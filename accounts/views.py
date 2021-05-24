@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
-from django.contrib.auth import authenticate
+from django.contrib import auth
 from django.utils import timezone
 from django.http import HttpResponseBadRequest
 from .models import User
@@ -18,20 +18,21 @@ def register(request):
     if request.method == "POST":
         username = request.POST.get('username')
         display_name = request.POST.get('display-name')
-        if not utils.validate_username(username):
-            error = 'Invalid matriculation number'
-            return HttpResponseBadRequest('Invalid matriculation number')
-        elif not utils.validate_display_name(display_name):
-            error = 'Invalid display name'
-            return HttpResponseBadRequest('Invalid display name')
+        #if not utils.validate_username(username):
+        #    error = 'Invalid matriculation number'
+         #   return HttpResponseBadRequest('Invalid matriculation number')
+        #elif not utils.validate_display_name(display_name):
+        #    error = 'Invalid display name'
+         #   return HttpResponseBadRequest('Invalid display name')
 
-        elif User.objects.filter(username=username).first():
+        if User.objects.filter(username=username).exists():
             error = 'Student already exists.'
             return HttpResponseBadRequest('Student already exists.')
         else:
-            User.objects.create(password='none', is_superuser=False, username=username, first_name='none',  last_name='none', display_name=display_name, email='none', is_staff=False, is_active=True,date_joined=timezone.now())
-            authenticate(username=username, display_name=display_name)
-            return redirect(reverse('fido2_begin_reg'))
+            u = User.objects.create(first_name = display_name, password='none', is_superuser=False, username=username,  last_name='', display_name=display_name, email='none', is_staff=False, is_active=True,date_joined=timezone.now())
+            u.backend = 'django.contrib.auth.backends.ModelBackend'
+            auth.login(request,u)
+            return redirect(reverse('start_fido2'))
 
     context = {
         'page_title': "Register",

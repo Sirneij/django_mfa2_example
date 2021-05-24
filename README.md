@@ -1,5 +1,6 @@
 # django_mfa2_example
 
+This example application uses [Django-mfa2](https://github.com/mkalioby/django-mfa2) to implement a password-less fingerprint-based authentication and authorization system. It's live and can be accessed [here](https://django-mfa2-example.herokuapp.com/).
 ## Run locally
 
 - clone this report:

@@ -151,7 +151,7 @@ if DEBUG:
   FIDO_SERVER_ID=u"localhost"      # Server rp id for FIDO2, it the full domain of your project
 else:
   U2F_APPID="https://django-mfa2-example.herokuapp.com"    #URL For U2F
-  FIDO_SERVER_ID=u"https://django-mfa2-example.herokuapp.com"      # Server rp id for FIDO2, it the full domain of your project
+  FIDO_SERVER_ID=u"django-mfa2-example.herokuapp.com"      # Server rp id for FIDO2, it the full domain of your project
 
 FIDO_SERVER_NAME=u"django_mfa2_example"
 

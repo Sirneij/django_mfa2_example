@@ -138,12 +138,11 @@ LOGOUT_REDIRECT_URL='accounts:index'
 
 
 MFA_UNALLOWED_METHODS=()   # Methods that shouldn't be allowed for the user
-# MFA_LOGIN_CALLBACK="example.auth.create_session"      # A function that should be called by username to login the user in session
+MFA_LOGIN_CALLBACK="accounts.views.log_user_in"            # A function that should be called by username to login the user in session
 MFA_RECHECK=True           # Allow random rechecking of the user
 MFA_RECHECK_MIN=10         # Minimum interval in seconds
 MFA_RECHECK_MAX=30         # Maximum in seconds
-MFA_QUICKLOGIN=True        # Allow quick login for returning users by provide only their 2FA
-MFA_HIDE_DISABLE=('FIDO2',)     # Can the user disable his key (Added in 1.2.0).
+MFA_QUICKLOGIN=True        
 
 TOKEN_ISSUER_NAME="django_mfa2_example"      #TOTP Issuer name
 

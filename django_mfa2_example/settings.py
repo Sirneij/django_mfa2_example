@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,12 +21,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-k+*^qwc1ud*t5uvsc3@j2&(3567-x+6p)4$rx7gpt$gi@&rx5d'
+SECRET_KEY = config('SECRET_KEY', default='django-insecure-k+*^qwc1ud*t5uvsc3@j2&(3567-x+6p)4$rx7gpt$gi@&rx5d')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG', default=True, cast=bool)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -50,6 +51,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'django_mfa2_example.urls'
@@ -148,3 +150,7 @@ TOKEN_ISSUER_NAME="django_mfa2_example"      #TOTP Issuer name
 U2F_APPID="https://localhost"    #URL For U2F
 FIDO_SERVER_ID=u"localhost"      # Server rp id for FIDO2, it the full domain of your project
 FIDO_SERVER_NAME=u"django_mfa2_example"
+
+import dj_database_url
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)

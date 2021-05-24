@@ -1,53 +1,116 @@
 {% extends 'base.html' %}
+<!-- title -->
+
+{% block title %} {{page_title}} {% endblock title %}
+
 <!-- load static tags -->
 {% load static %}
+<!-- css -->
+{% block css %}
+<style>
+  .bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+  }
+
+  @media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+      font-size: 3.5rem;
+    }
+  }
+  html,
+  body {
+    height: 100%;
+  }
+
+  body {
+    display: flex;
+    align-items: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: #f5f5f5;
+  }
+
+  .form-signin {
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: auto;
+  }
+
+  .form-signin .checkbox {
+    font-weight: 400;
+  }
+
+  .form-signin .form-floating:focus-within {
+    z-index: 2;
+  }
+
+  .form-signin input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  .form-signin input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+</style>
+{% endblock css %}
 <!-- content begins -->
 {% block content %}
-<main class="form-signin">
-  <form method="POST">
-    {% csrf_token %}
-    <img
-      class="mb-4"
-      src="{% static 'images/logo.png' %}"
-      alt=""
-      width="72"
-      height="57"
-    />
-    <h1 class="h3 mb-3 fw-normal">Register</h1>
-
-    {% if error %}
-    <p class="mb-3 fw-normal text-danger">{{error}}</p>
-    {% endif %}
-
-    <div class="form-floating mb-2">
-      <input
-        type="text"
-        name="username"
-        id="username"
-        class="form-control"
-        placeholder="username"
+<body class="text-center">
+  <main class="form-signin">
+    <form method="POST">
+      {% csrf_token %}
+      <img
+        class="mb-4"
+        src="{% static 'images/logo.png' %}"
+        alt=""
+        width="72"
+        height="57"
       />
+      <h1 class="h3 mb-3 fw-normal">Register</h1>
 
-      <label for="username">Username</label>
-    </div>
-    <div class="form-floating mb-2">
+      {% if error %}
+      <p class="mb-3 fw-normal text-danger">{{error}}</p>
+      {% endif %}
+
+      <div class="form-floating mb-2">
+        <input
+          type="text"
+          name="username"
+          id="username"
+          class="form-control"
+          placeholder="username"
+        />
+
+        <label for="username">Username</label>
+      </div>
+      <div class="form-floating mb-2">
+        <input
+          type="text"
+          name="display-name"
+          id="display-name"
+          class="form-control"
+          placeholder="display-name"
+        />
+
+        <label for="display-name">Display name</label>
+      </div>
+
       <input
-        type="text"
-        name="display-name"
-        id="display-name"
-        class="form-control"
-        placeholder="display-name"
+        type="submit"
+        value="Register"
+        class="w-100 btn btn-lg btn-primary"
       />
-
-      <label for="display-name">Display name</label>
-    </div>
-
-    <input
-      type="submit"
-      value="Register"
-      class="w-100 btn btn-lg btn-primary"
-    />
-    <p class="mt-5 mb-3 text-muted">&copy; 2021</p>
-  </form>
-</main>
+      <p class="mt-5 mb-3 text-muted">&copy; 2021</p>
+    </form>
+  </main>
+</body>
 {% endblock content %}

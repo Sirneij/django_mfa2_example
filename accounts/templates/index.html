@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+<!-- load static -->
+{% load static %}
+<!-- title -->
+{% block title %} {{page_title}} {% endblock title %}
+<!-- css -->
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/custom.css' %}" />
+{% endblock css %}
+<!-- content -->
+{% block content %}
+<body class="d-flex h-100 text-center text-white bg-dark">
+  <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+    <header class="mb-auto">
+      <div>
+        <h3 class="float-md-start mb-0">Cover</h3>
+        <nav class="nav nav-masthead justify-content-center float-md-end">
+          <a
+            class="nav-link active"
+            aria-current="page"
+            href="{% url 'accounts:index' %}"
+            >Home</a
+          >
+
+          {% if request.user.is_authenticated %}
+          <a class="nav-link" href="{% url 'accounts:logout' %}">Logout</a>
+          {% else %}
+          <a class="nav-link" href="{% url 'accounts:register' %}">Register</a>
+          <a class="nav-link" href="{% url 'accounts:login' %}">Login</a>
+          {% endif %}
+        </nav>
+      </div>
+    </header>
+
+    <main class="px-3">
+      {% if request.user.is_authenticated %}
+
+      <h1>You are logged in!!!!</h1>
+      <p class="lead">
+        You have successfully used Django-mfa2 biometric authentication to log
+        in. Hurray!
+      </p>
+      <p class="lead">
+        <a
+          href="https://github.com/mkalioby/django-mfa2"
+          class="btn btn-lg btn-secondary fw-bold border-white bg-white"
+          >Learn more</a
+        >
+      </p>
+      {% else %}
+
+      <h1>Cover your page.</h1>
+      <p class="lead">
+        Cover is a one-page template for building simple and beautiful home
+        pages. Download, edit the text, and add your own fullscreen background
+        photo to make it your own.
+      </p>
+      <p class="lead">
+        <a
+          href="#"
+          class="btn btn-lg btn-secondary fw-bold border-white bg-white"
+          >Learn more</a
+        >
+      </p>
+      {% endif %}
+    </main>
+
+    <footer class="mt-auto text-white-50">
+      <p>
+        Cover template for
+        <a href="https://getbootstrap.com/" class="text-white">Bootstrap</a>, by
+        <a href="https://twitter.com/mdo" class="text-white">@mdo</a>.
+      </p>
+    </footer>
+  </div>
+</body>
+
+{% endblock content %}

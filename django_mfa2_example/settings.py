@@ -147,8 +147,13 @@ MFA_HIDE_DISABLE=('FIDO2',)     # Can the user disable his key (Added in 1.2.0).
 
 TOKEN_ISSUER_NAME="django_mfa2_example"      #TOTP Issuer name
 
-U2F_APPID="https://localhost"    #URL For U2F
-FIDO_SERVER_ID=u"localhost"      # Server rp id for FIDO2, it the full domain of your project
+if DEBUG:
+  U2F_APPID="https://localhost"    #URL For U2F
+  FIDO_SERVER_ID=u"localhost"      # Server rp id for FIDO2, it the full domain of your project
+else:
+  U2F_APPID="https://django-mfa2-example.herokuapp.com"    #URL For U2F
+  FIDO_SERVER_ID=u"https://django-mfa2-example.herokuapp.com"      # Server rp id for FIDO2, it the full domain of your project
+
 FIDO_SERVER_NAME=u"django_mfa2_example"
 
 import dj_database_url

@@ -1,0 +1,1 @@
+web: gunicorn django_mfa2_example.wsgi --log-file -

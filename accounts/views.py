@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
+from django.urls import reverse
 from django.contrib.auth import authenticate
 from django.utils import timezone
+from django.http import HttpResponseBadRequest
 from .models import User
 
 from . import utils
@@ -18,14 +20,18 @@ def register(request):
         display_name = request.POST.get('display-name')
         if not utils.validate_username(username):
             error = 'Invalid matriculation number'
-        if not utils.validate_display_name(display_name):
+            return HttpResponseBadRequest('Invalid matriculation number')
+        elif not utils.validate_display_name(display_name):
             error = 'Invalid display name'
+            return HttpResponseBadRequest('Invalid display name')
 
-        if User.objects.filter(username=username).first():
+        elif User.objects.filter(username=username).first():
             error = 'Student already exists.'
-        User.objects.create(password='none', is_superuser=False, username=username, first_name='none',  last_name='none', display_name=display_name, email='none', is_staff=False, is_active=True,date_joined=timezone.now())
-        authenticate(username=username, display_name=display_name)
-        return redirect('fido2_begin_reg')
+            return HttpResponseBadRequest('Student already exists.')
+        else:
+            User.objects.create(password='none', is_superuser=False, username=username, first_name='none',  last_name='none', display_name=display_name, email='none', is_staff=False, is_active=True,date_joined=timezone.now())
+            authenticate(username=username, display_name=display_name)
+            return redirect(reverse('fido2_begin_reg'))
 
     context = {
         'page_title': "Register",

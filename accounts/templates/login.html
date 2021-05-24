@@ -77,6 +77,10 @@
       />
       <h1 class="h3 mb-3 fw-normal">Login</h1>
 
+      {% if err %}
+      <p class="mb-3 fw-normal text-danger">{{err}}</p>
+      {% endif %}
+
       <div class="form-floating mb-2">
         <input
           type="text"

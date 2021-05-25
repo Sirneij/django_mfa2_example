@@ -4,7 +4,6 @@ from django.contrib import auth
 from django.utils import timezone
 from django.conf import settings
 from .models import User
-
 from . import utils
 
 def login_user_in(request, username):
@@ -38,10 +37,9 @@ def login(request):
         return render(request, 'login.html')
 
 def register(request):
-    
     if request.method == "POST":
         error = ''
-        username = request.POST.get('username')
+        username = request.POST.get('username').replace('/', '')
         display_name = request.POST.get('display-name')
         if not utils.validate_username(username):
            error = 'Invalid matriculation number'

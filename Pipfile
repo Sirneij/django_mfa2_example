@@ -5,7 +5,6 @@ name = "pypi"
 
 [packages]
 django = "*"
-django-mfa2 = "*"
 whitenoise = "*"
 gunicorn = "*"
 python-decouple = "*"

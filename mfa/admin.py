@@ -1,9 +1,9 @@
 from django.contrib import admin
-from .models import User_keys
+from mfa.models import User_Keys
 
 
 class CustomUserAdmin(admin.ModelAdmin):
-    model = User_keys
+    model = User_Keys
     list_display = ('username',)
 
-admin.site.register(User_keys, CustomUserAdmin)
+admin.site.register(User_Keys, CustomUserAdmin)

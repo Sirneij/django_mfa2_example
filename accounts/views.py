@@ -18,8 +18,7 @@ def login_user_in(request, username):
 def login(request):
     if request.method=="POST":
         username = request.POST.get('username').replace('/', '')
-        # user = auth.authenticate(username=username)
-        user = User.objects.filter(username=username)
+        user = User.objects.filter(username=username).first()
         err=""
         if user is not None:
             if user.is_active:
@@ -27,7 +26,7 @@ def login(request):
                     from mfa.helpers import has_mfa
                     res =  has_mfa(request,username=username)
                     if res: return res
-                    return login_user_in(request,username)
+                    return login_user_in(request, username)
             else:
                 err="This student is NOT activated yet."
         else:

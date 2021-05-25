@@ -18,8 +18,9 @@ def login_user_in(request, username):
 
 def login(request):
     if request.method=="POST":
-        username = request.POST.get('username')
-        user = auth.authenticate(username=username)
+        username = request.POST.get('username').replace('/', '')
+        # user = auth.authenticate(username=username)
+        user = User.objects.filter(username=username)
         err=""
         if user is not None:
             if user.is_active:

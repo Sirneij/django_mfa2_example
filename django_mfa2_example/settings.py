@@ -138,7 +138,7 @@ LOGOUT_REDIRECT_URL='accounts:index'
 
 
 MFA_UNALLOWED_METHODS=()   # Methods that shouldn't be allowed for the user
-MFA_LOGIN_CALLBACK="accounts.views.log_user_in"            # A function that should be called by username to login the user in session
+MFA_LOGIN_CALLBACK="accounts.views.login_user_in"            # A function that should be called by username to login the user in session
 MFA_RECHECK=True           # Allow random rechecking of the user
 MFA_RECHECK_MIN=10         # Minimum interval in seconds
 MFA_RECHECK_MAX=30         # Maximum in seconds

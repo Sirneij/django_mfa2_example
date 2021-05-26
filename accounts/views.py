@@ -16,7 +16,7 @@ def login_user_in(request, username):
         return redirect(reverse('accounts:index'))
 
 def login(request):
-    if request.method=="POST":
+    if request.method == "POST":
         username = request.POST.get('username').replace('/', '')
         user = User.objects.filter(username=username).first()
         err=""

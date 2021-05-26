@@ -11,6 +11,7 @@ python-decouple = "*"
 psycopg2 = "*"
 dj-database-url = "*"
 jsonfield = "*"
+python-jose = "*"
 
 [dev-packages]
 

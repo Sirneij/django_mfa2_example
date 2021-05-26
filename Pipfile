@@ -10,6 +10,7 @@ gunicorn = "*"
 python-decouple = "*"
 psycopg2 = "*"
 dj-database-url = "*"
+jsonfield = "*"
 
 [dev-packages]
 

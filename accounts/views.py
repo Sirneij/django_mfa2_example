@@ -10,8 +10,8 @@ def login_user_in(request, username):
     user=User.objects.get(username=username)
     user.backend='django.contrib.auth.backends.ModelBackend'
     auth.login(request, user)
-    if "redirect" in request.POST:
-        return redirect(request.POST["redirect"])
+    if "next" in request.POST:
+        return redirect(request.POST.get("next"))
     else:
         return redirect(reverse('accounts:index'))
 

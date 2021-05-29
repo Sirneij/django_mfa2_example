@@ -155,7 +155,7 @@ else:
 
 FIDO_SERVER_NAME=u"django_mfa2_example"
 MFA_REDIRECT_AFTER_REGISTRATION = 'accounts:index'
-MFA_SUCCESS_REGISTRATION_MSG = 'Your keys have successfully been created!'
+MFA_SUCCESS_REGISTRATION_MSG = 'Your keys have successfully been created! You '
 
 import dj_database_url
 db_from_env = dj_database_url.config(conn_max_age=500)

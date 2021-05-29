@@ -154,6 +154,8 @@ else:
   FIDO_SERVER_ID=u"django-mfa2-example.herokuapp.com"      # Server rp id for FIDO2, it the full domain of your project
 
 FIDO_SERVER_NAME=u"django_mfa2_example"
+MFA_REDIRECT_AFTER_REGISTRATION = 'accounts:index'
+MFA_SUCCESS_REGISTRATION_MSG = 'Your keys have successfully been created!'
 
 import dj_database_url
 db_from_env = dj_database_url.config(conn_max_age=500)

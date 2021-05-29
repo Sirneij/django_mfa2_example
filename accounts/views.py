@@ -59,3 +59,4 @@ def register(request):
 
 def index(request):
     return render(request, 'index.html', {"page_title": "Welcome home"})
+

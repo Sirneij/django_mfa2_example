@@ -12,7 +12,7 @@ psycopg2 = "*"
 dj-database-url = "*"
 jsonfield = "*"
 python-jose = "*"
-django-mfa2 = "*"
+django-mfa2 = "==2.2.0b2"
 
 [dev-packages]
 
